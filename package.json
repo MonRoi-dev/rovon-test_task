@@ -1,0 +1,32 @@
+{
+  "name": "rovon-test_task",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "ts-node src/server.ts"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.7",
+    "express": "^5.2.1",
+    "jsdom": "^29.1.1",
+    "marked": "^18.0.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.5",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/jsdom": "^28.0.3",
+    "@types/marked": "^5.0.2",
+    "@types/node": "^25.9.1",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.4.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
