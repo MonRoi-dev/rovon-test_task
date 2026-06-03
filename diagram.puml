@@ -1,0 +1,45 @@
+@startuml
+skinparam handwritten false
+skinparam participantPadding 20
+skinparam boxPadding 10
+
+actor "Клиент\n(Главное приложение)" as Client
+participant "Контроллер\n(API Эндпоинт)" as Controller
+participant "Сервис Доставки\n(Оркестратор)" as Service
+participant "MockCdekProvider" as CDEK
+participant "MockBoxberryProvider" as Boxberry
+
+Client -> Controller: POST /calculate (корзина, адрес)
+activate Controller
+
+Controller -> Controller: Валидация входных данных
+alt Неверные данные
+    Controller --> Client: 400 Ошибка запроса (Bad Request)
+else Данные корректны
+    Controller -> Service: calculateAll(корзина, адрес)
+    activate Service
+    
+    note over Service: Сервис выполняет запросы\nк провайдерам параллельно
+    
+    par Параллельное выполнение
+        Service -> CDEK: calculate(корзина, адрес)
+        activate CDEK
+        CDEK --> Service: Возврат вариантов доставки CDEK
+        deactivate CDEK
+    else
+        Service -> Boxberry: calculate(корзина, адрес)
+        activate Boxberry
+        Boxberry --> Service: Возврат вариантов доставки Boxberry
+        deactivate Boxberry
+    end
+    
+    Service -> Service: Агрегация и форматирование результатов\n(Исключение ошибок и тайм-аутов)
+    
+    Service --> Controller: Список вариантов доставки
+    deactivate Service
+    
+    Controller --> Client: 200 OK + JSON(Варианты)
+end
+
+deactivate Controller
+@enduml

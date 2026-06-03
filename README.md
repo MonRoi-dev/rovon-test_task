@@ -183,3 +183,8 @@ npm run test
 
 3. **Классическая валидация DTO:**
    Использование валидации `Zod` на уровне роутинга отсекает некорректные запросы до выполнения тяжелой бизнес-логики, предохраняя систему от непредвиденных исключений и перегрузок.
+
+---
+
+## 4. Схема работы
+![Sequence Diagram](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/MonRoi-dev/rovon-test_task/refs/heads/main/diagram.puml)
