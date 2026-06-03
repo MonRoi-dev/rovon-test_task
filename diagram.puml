@@ -1,7 +1,14 @@
 @startuml
-skinparam handwritten false
-skinparam participantPadding 20
-skinparam boxPadding 10
+!option handwritten false
+
+<style>
+  participant {
+    Padding 20
+  }
+  box {
+    Padding 10
+  }
+</style>
 
 actor "Клиент\n(Главное приложение)" as Client
 participant "Контроллер\n(API Эндпоинт)" as Controller
